@@ -24,6 +24,7 @@ As we work on our project, we will also try to incorporate visualizations of con
 
 Image Captioning with Object Detection and Localization: https://arxiv.org/abs/1706.02430
 
-Statistics about visual impairment: https://www.cdc.gov/visionhealth/basics/ced/fastfacts.htm#:~:text=Approximately%2012%20million%20people%2040,due%20to%20uncorrected%20refractive%20error
+Statistics about visual impairment: https://www.cdc.gov/visionhealth/basics/ced/fastfacts.htm#:~:text=Approximately%2012%20million%20
+people%2040,due%20to%20uncorrected%20refractive%20error
 
 Paper used image captioning, mentioned background for visually impaired people: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8990630&tag=1
