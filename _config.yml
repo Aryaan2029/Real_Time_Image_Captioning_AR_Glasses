@@ -1,17 +1,1 @@
 theme: jekyll-theme-slate
-title: Emerald | A simple Jekyll blog
-description: "A minimal blog template, build with Jekyll."
-url: "http://www.autoimagecaptioning.com"
-author:
-  name: "Jacopo Rabolini"
-  email: "hello@jacoporabolini.com"
-  url: "http://www.jacoporabolini.com"
-
-# Build settings
-baseurl: /emerald # Change this to your relative path (ex: /blog/), or leave just a /
-markdown: kramdown
-source: .
-destination: ./_site
-permalink: /:title
-paginate: 8
-paginate_path: /page:num/
