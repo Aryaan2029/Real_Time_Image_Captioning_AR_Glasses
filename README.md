@@ -1,4 +1,4 @@
-# Image Captioning 
+# Automated Image Captioning 
 
 Our Team - Alison Ma, Aryan Pariani, Aryaan Mehra, Max Rivera, Jun Chen
 
@@ -11,10 +11,13 @@ We believe such models have several applications to assist the visually impaired
 
 ## Methodology:
 
-We will build and train a custom CNN model or fine-tune a pretrained CNN model with transfer learning for Object Detection (most likely a Fast R-CNN Model) to first identify, categorize and encapsulate with bounding boxes the classes of common objects found in the images. 
-Using the object classes and the position of their bounding boxes in each image, we will train a Recurrent Neural Network with Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
-The MSCOCO Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
-As we work on our project, we will also try to incorporate visualizations of convolutional filters, etc. 
+1. We will build and train a custom CNN model or fine-tune a pretrained CNN model with transfer learning for Object Detection (most likely a Fast R-CNN Model) to first identify, categorize and encapsulate with bounding boxes the classes of common objects found in the images. 
+
+2. Using the object classes and the position of their bounding boxes in each image, we will train a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
+
+3. The MSCOCO Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
+
+4. As we work on our project, we will also try to incorporate visualizations of convolutional filters and features being detected with extensive evaluation of our results. 
 
 ## Dataset:
 
