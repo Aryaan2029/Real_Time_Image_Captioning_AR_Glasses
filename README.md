@@ -2,15 +2,14 @@
 
 Our Team - Alison Ma, Aryan Pariani, Aryaan Mehra, Max Rivera, Jun Chen
 
-## Background Information:
+## Introduction/Background:
 
-In our project, we’re looking to not only understand the distinct features of multiple objects, rather the collective relationships of these objects to derive useful meanings from images. To do so, we will be leveraging two major fields of artificial intelligence: Computer Vision and Natural Language Processing. Our model consists of two sub-models: an object detection and localization model, which will extract the information of objects and their spatial relationship in images respectively using bounding boxes; and a deep recurrent neural network (RNN) based on long short-term memory (LSTM) units with attention mechanism for sentence generation. 
-
-We believe such models have several applications to assist the visually impaired in understanding the environment around them. Over 12 million people suffer from visual impairments in the US alone [cdc.gov]. This does not account for millions of additional people who cannot process what they see due to impaired functions in other brain regions. Current tools used to improve quality of life include guide dogs, corrective lenses (look at others). Increased accessibility and development of mobile devices and smart glasses provides an opportunity to employ more sophisticated ways of helping not only the visually impaired, but also those with impaired/damaged processing centers to navigate their surroundings. 
+Our project aims to identify objects with images and derive useful meanings from them by combining two major fields: computer vision and natural language processing. According to the CDC, 12 million people already suffer from visual impairments in the US alone, a number that is only expected to double by 2050 [2]. Current methods, such as guide dogs and corrective lenses, may improve quality of life, but increased accessibility of mobile devices and smart glasses provide an opportunity to employ more sophisticated methods, such as machine learning, to help both the visually impaired and those with impaired/damaged processing centers.
 
 ## Problem Definition:
 
-The number of people who require visual aid will only continue to rise and if unaddressed, will further exacerbate personal, societal, and economic consequences. To combat this universal problem, the need for intelligent image captioning research and automatic tools are necessary not only to provide newer qualities of aid such as interpretation, but also for these tools to become more readily available and affordable. With computer vision techniques and natural language processing, an image captioning process can be done to assist the visually impaired so that they may further understand and interact with their surrounding environment. Given an image, our project aims to identify and categorize objects within images with a CNN model for object detection and utilize RNN with Attention Mechanism and LSTM to caption the image. By doing this, we not only address the hindrances that visual impairment constructs, but we also gain an understanding of how the pipeline of objection detection and object captioning works. Our study will limit itself to the scope of the English language. 
+Given an image, our project aims to identify and categorize objects with a CNN model for object detection and utilize RNN with Attention Mechanism and LSTM to produce a caption. By doing this, we not only address the hindrances that visual impairment constructs, but we also gain an understanding of implementing a pipeline for objection detection and captioning. Our study will limit itself to the scope of the English language.
+
 
 ## Methodology:
 
