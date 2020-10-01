@@ -45,9 +45,13 @@ Huang.  2017.  Image captioning with object detection and localization.
 arXiv:abs/1706.02430, Retrieved from https://arxiv.org/abs/1706.02430
 
 [2] 	CDC. Center for Disease Control and Prevention. Retrieved from	     
-https://www.cdc.gov/visionhealth/basics/ced/fastfacts.htm#:~:text=Approximately%2012%20million%20people%2040,due%20to%20uncorrected%20refractive%20error
+https://www.cdc.gov/visionhealth/basics/ced/fastfacts.htm#:~:text=Approximately
+%2012%20million%20people%2040,due%20to%20uncorrected%20refractive%20error
 
-[3]	B. Makav and V. Kılı̧c. 2019.  A new image captioning approach for visually im-paired people. In 2019 11th International Conference on Electrical and Elec-tronics Engineering (ELECO), November 28-30, 2019, Bursa, Turkey. IEEE, Piscataway, NJ, 945–949. https://doi.org/10.23919/ELECO47770.2019.8990630.
+[3]	B. Makav and V. Kılı̧c. 2019.  A new image captioning approach for visually 
+im-paired people. In 2019 11th International Conference on Electrical and Elec-tronics
+Engineering (ELECO), November 28-30, 2019, Bursa, Turkey. IEEE, Piscataway, NJ, 945–949.
+https://doi.org/10.23919/ELECO47770.2019.8990630.
 
 
 ## Dataset:
