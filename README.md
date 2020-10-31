@@ -28,7 +28,8 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 3. As a result, we decided it would be best to use a smaller dataset which also had thousands of images and labelled instances but would be easier to work with. 
 4. After researching the various different datasets out there we decided to use the Flickr30k dataset from Kaggle which, apparently over time, has become the standard dataset to use for image captioning purposes.
 5. It contains 31,873 images with 276,000 labels on these images and 27 overall classes. As shown below.
-//image here//
+
+![Screenshot](Screen Shot 2020-10-31 at 6.32.53 AM.png)
 
 6. This turned out to work well for us and we moved ahead with the process of applying Fast-RCNN on the dataset to generate bounding boxes for the images since our thesis is that the presence of bounding boxes will improve accuracy in the final product. 
 7. In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. 
