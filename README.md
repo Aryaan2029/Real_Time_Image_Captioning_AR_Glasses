@@ -29,11 +29,12 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 4. After researching the various different datasets out there we decided to use the Flickr30k dataset from Kaggle which, apparently over time, has become the standard dataset to use for image captioning purposes.
 5. It contains 31,873 images with 276,000 labels on these images and 27 overall classes. As shown below.
 
-![Alt text](relative/path/to/Screen Shot 2020-10-31 at 6.32.53 AM.png?raw=true "Title")
+![](Screen%20Shot%202020-10-31%20at%206.58.07%20AM.png)
 
 6. This turned out to work well for us and we moved ahead with the process of applying Fast-RCNN on the dataset to generate bounding boxes for the images since our thesis is that the presence of bounding boxes will improve accuracy in the final product. 
 7. In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. 
-//image here//
+
+![](Screen%20Shot%202020-10-31%20at%206.32.53%20AM.png)
 
 8. This seemed to work well and we had no issues generating bounding boxes, hence, we moved into applying Fast-RCNN. The above image shows the YOLO object detection capability.
 9. On researching Fast-RCNN, we realised that several versions of it have now been released including Fast-RCNN, Faster-RCNN and Mask-RCNN, the most recent and accurate version of the model. 
@@ -41,13 +42,14 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 11. We were able to find a model which had trained Mask-RCNN on the MS COCO dataset and download those pre-trained weights. 
 12. Next, we applied those weights to train all 31,873 images in the Flickr dataset to generate bounding boxes for all the objects in each image.
 13. The following are some examples:
-//image here//
+
+![](Screen%20Shot%202020-10-31%20at%206.58.34%20AM.png)
 
 14. This is a relatively high accuracy image where even items such as bags, handbags and traffic lights are being detected. 
-//image here//
+
+![](Screen%20Shot%202020-10-31%20at%206.58.49%20AM.png)
 
 15. This image is a relatively low accuracy prediction with items like car and clock being recognized incorrectly. 
-//image here//
 
 16. After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.
 
@@ -58,7 +60,8 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 2. We were also able to store this information as a dictionary using json and store all the information inside text files. 
 
 3. Each image has the three keys in a dictionary; “Class ID’s” which signifies which class the object in the image belongs to, “ROI’s” which contain information about the location of the edges of the bounding boxes and “Scores” which contains information about the accuracy of each class identified in a given image. 
-//image here//
+
+![](Screen%20Shot%202020-10-31%20at%207.04.02%20AM.png)
 
 4. We were successful in the milestone which we had set for ourselves which was to finish all the data analysis and collection.
 
