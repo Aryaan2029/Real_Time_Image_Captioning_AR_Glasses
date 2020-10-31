@@ -13,28 +13,40 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 ## Methodology:
 
-1. We will build and train a custom CNN model or fine-tune a pretrained CNN model with transfer learning for Object Detection (most likely a Fast R-CNN Model) to first identify, categorize and encapsulate with bounding boxes the classes of common objects found in the images. 
+1. We will build We will be using a version of the Fast-RCNN to create bounding boxes on our dataset as we believe it will provide us with more accurate captions later when we create our RNN model. 
 
-2. Using the object classes and the position of their bounding boxes in each image, we will train a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
+2. We chose Mask-RCNN both because of the speed and the accuracy of the model. Mask-RCNN is backed by a Resnet 101 architecture. Normally, when we train a very deep network, it tends to perform worse on the training set as the layers get deeper. The presence of skip connections in a ResNet with identity blocks, enables the activations of subsequent layers to equal prior layers without having the additional layers hurt the performance of the model. 
 
-3. The MSCOCO Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
+3. This turns out to improve the performance of the model as well at times as the presence of additional hidden units in a layer might improve feature selection. 
 
-4. As we work on our project, we will also try to incorporate visualizations of convolutional filters and features being detected with extensive evaluation of our results. 
+4. An example of the ResNet structure is the following:
+
+![](Images/Screen%20Shot%202020-10-31%20at%2010.51.32%20PM.png)
+
+5. Using the object classes and the position of their bounding boxes in each image, we will train a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
+
+6. The MSCOCO Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
+
+7. As we work on our project, we will also try to incorporate visualizations of convolutional filters and features being detected with extensive evaluation of our results. 
 
 ## Data Collection:
 
 1. We first tried to use the MSCOCO dataset which is a consolidated dataset containing 328,000 images with over 2.5 million labelled instances across 91 common object classes. 
+
 2. When trying to work with a dataset this massive, we ran into several issues with downloading, storing and applying a CNN to it. 
+
 3. As a result, we decided it would be best to use a smaller dataset which also had thousands of images and labelled instances but would be easier to work with. 
+
 4. After researching the various different datasets out there we decided to use the Flickr30k dataset from Kaggle which, apparently over time, has become the standard dataset to use for image captioning purposes.
+
 5. It contains 31,873 images with 276,000 labels on these images and 27 overall classes. As shown below.
 
-![](Screen%20Shot%202020-10-31%20at%206.58.07%20AM.png)
+![](Images/Screen%20Shot%202020-10-31%20at%206.58.07%20AM.png)
 
 6. This turned out to work well for us and we moved ahead with the process of applying Fast-RCNN on the dataset to generate bounding boxes for the images since our thesis is that the presence of bounding boxes will improve accuracy in the final product. 
 7. In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. 
 
-![](Screen%20Shot%202020-10-31%20at%206.32.53%20AM.png)
+![](Images/Screen%20Shot%202020-10-31%20at%206.32.53%20AM.png)
 
 8. This seemed to work well and we had no issues generating bounding boxes, hence, we moved into applying Fast-RCNN. The above image shows the YOLO object detection capability.
 9. On researching Fast-RCNN, we realised that several versions of it have now been released including Fast-RCNN, Faster-RCNN and Mask-RCNN, the most recent and accurate version of the model. 
@@ -43,11 +55,11 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 12. Next, we applied those weights to train all 31,873 images in the Flickr dataset to generate bounding boxes for all the objects in each image.
 13. The following are some examples:
 
-![](Screen%20Shot%202020-10-31%20at%206.58.34%20AM.png)
+![](Images/Screen%20Shot%202020-10-31%20at%206.58.34%20AM.png)
 
 14. This is a relatively high accuracy image where even items such as bags, handbags and traffic lights are being detected. 
 
-![](Screen%20Shot%202020-10-31%20at%206.58.49%20AM.png)
+![](Images/Screen%20Shot%202020-10-31%20at%206.58.49%20AM.png)
 
 15. This image is a relatively low accuracy prediction with items like car and clock being recognized incorrectly. 
 
@@ -59,13 +71,15 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 2. We were also able to store this information as a dictionary using json and store all the information inside text files. 
 
-3. Each image has the three keys in a dictionary; “Class ID’s” which signifies which class the object in the image belongs to, “ROI’s” which contain information about the location of the edges of the bounding boxes and “Scores” which contains information about the accuracy of each class identified in a given image. 
+3. Each image has the three keys in a dictionary; 
 
-![](Screen%20Shot%202020-10-31%20at%207.04.02%20AM.png)
+4. “Class ID’s” which signifies which class the object in the image belongs to, “ROI’s” specify the location in the image as a list as [center y coordinate, center x coordinate, height, width] - [y1,x1, y2, x2] and “Scores” which contains information about the accuracy of each class identified in a given image. 
 
-4. We were successful in the milestone which we had set for ourselves which was to finish all the data analysis and collection.
+![](Images/Screen%20Shot%202020-10-31%20at%207.04.02%20AM.png)
 
-5. We can now move into making our RNN image captioning model to generate captions for our images.
+5. We were successful in the milestone which we had set for ourselves which was to finish all the data analysis and collection.
+
+6. We can now move into making our RNN image captioning model to generate captions for our images.
 
 
 ## Discussion:
