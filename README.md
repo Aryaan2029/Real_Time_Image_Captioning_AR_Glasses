@@ -21,21 +21,61 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 4. As we work on our project, we will also try to incorporate visualizations of convolutional filters and features being detected with extensive evaluation of our results. 
 
-## Potential Results:
+## Data Collection:
 
-1. Our Object Detection CNN model is successful, for the most part, in identifying different classes of objects in images, and precisely encapsulating these objects in bounding boxes. 
+1. We first tried to use the MSCOCO dataset which is a consolidated dataset containing 328,000 images with over 2.5 million labelled instances across 91 common object classes. 
+2. When trying to work with a dataset this massive, we ran into several issues with downloading, storing and applying a CNN to it. 
+3. As a result, we decided it would be best to use a smaller dataset which also had thousands of images and labelled instances but would be easier to work with. 
+4. After researching the various different datasets out there we decided to use the Flickr30k dataset from Kaggle which, apparently over time, has become the standard dataset to use for image captioning purposes.
+5. It contains 31,873 images with 276,000 labels on these images and 27 overall classes. As shown below.
+//image here//
 
-2. Our LSTM Recurrent Neural Network can generate simple and coherent sequences or sentence captions that make basic sense of events depicted in images, taking into special account the names and positions of objects detected and bounding boxes fit by the Object Detection CNN model. 
+6. This turned out to work well for us and we moved ahead with the process of applying Fast-RCNN on the dataset to generate bounding boxes for the images since our thesis is that the presence of bounding boxes will improve accuracy in the final product. 
+7. In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. 
+//image here//
 
-3. A related research has been done with VGG16 a deep learning architecture for image classification for extraction of visual attributes which was fed into Stanford CoreNLP Model for generating the captions  [3] . This related work can be used as comparison for our performance metrics.
+8. This seemed to work well and we had no issues generating bounding boxes, hence, we moved into applying Fast-RCNN. The above image shows the YOLO object detection capability.
+9. On researching Fast-RCNN, we realised that several versions of it have now been released including Fast-RCNN, Faster-RCNN and Mask-RCNN, the most recent and accurate version of the model. 
+10. We realised that making such a model from scratch would be extremely difficult and time consuming so we decided to use transfer learning. 
+11. We were able to find a model which had trained Mask-RCNN on the MS COCO dataset and download those pre-trained weights. 
+12. Next, we applied those weights to train all 31,873 images in the Flickr dataset to generate bounding boxes for all the objects in each image.
+13. The following are some examples:
+//image here//
 
-4. Potential quantitative evaluation of our approach include CIDEr and BLEU. From the MSCOCO dataset, there are referenced captions which can be compared with our generated captions with CIDEr which measures cosine similarity or BLEU which measures sensitivity [3].
+14. This is a relatively high accuracy image where even items such as bags, handbags and traffic lights are being detected. 
+//image here//
+
+15. This image is a relatively low accuracy prediction with items like car and clock being recognized incorrectly. 
+//image here//
+
+16. After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.
+
+## Results:
+
+1. By using the Mask-RCNN model described above, we were able to generate bounding box information for all 31,873 images in the Flickr dataset. 
+
+2. We were also able to store this information as a dictionary using json and store all the information inside text files. 
+
+3. Each image has the three keys in a dictionary; “Class ID’s” which signifies which class the object in the image belongs to, “ROI’s” which contain information about the location of the edges of the bounding boxes and “Scores” which contains information about the accuracy of each class identified in a given image. 
+//image here//
+
+4. We were successful in the milestone which we had set for ourselves which was to finish all the data analysis and collection.
+
+5. We can now move into making our RNN image captioning model to generate captions for our images.
+
 
 ## Discussion:
 
-1. We will use evaluation metrics to measure the objective, measurable performance of our models beyond just accuracy, such as F-1 Score, area under curve, specificity and sensitivity for both the training and test dataset. We shall discuss how to tackle model-related problems identified by evaluating these metrics, especially with respect to regularization, overfitting, the vanishing gradient problem, and suitable gradient descent optimizers, to name a few. 
+1. From the results of the object detection performed by the Mask-RCNN model it is clear that many images have extremely accurate detection of objects. This will be extremely helpful when generating accurate captions for our dataset. 
 
-2. We will evaluate the performance of the model by analyzing generated visualizations, filters of feature maps, and convolutional filters to assess the performance of filters in our Convolutional Neural Network and the LSTM units in our Recurrent Neural Network to identify problems and discuss possible solutions in terms of tuning of hyperparameters. 
+2. Similarly, there are several images which were relatively less accurate and described some classes correctly and others incorrectly in an image. This may cause our captioning system to have some images being highly accurate and some images being very inaccurate. It will be interesting to see the discrepancy between accurate and inaccurate images and understand the extent to which inaccuracy in the object detection system will play a role in providing inaccurate captions in the captioning system.
+
+3. We will use evaluation metrics to measure the performance of our models beyond just accuracy, such as F-1 Score, area under curve, specificity and sensitivity for both the training and test dataset. We shall discuss how to tackle model-related problems identified by evaluating these metrics, especially with respect to regularization, overfitting, the vanishing gradient problem, and suitable gradient descent optimizers, to name a few. 
+
+4. We will evaluate the performance of the model by analyzing generated visualizations, filters of feature maps, and convolutional filters to assess the performance of filters in our Convolutional Neural Network and the LSTM units in our Recurrent Neural Network to identify problems and discuss possible solutions in terms of tuning of hyperparameters. 
+
+5. Potential quantitative evaluation of our approach include CIDEr and BLEU. From the MSCOCO dataset, there are reference captions which can be compared with our generated captions with CIDEr which measures cosine similarity or BLEU which measures sensitivity [3].
+
 
 ## References:
 
@@ -47,12 +87,13 @@ arXiv:abs/1706.02430, Retrieved from https://arxiv.org/abs/1706.02430
 https://www.cdc.gov/visionhealth/basics/ced/fastfacts.htm#:~:text=Approximately
 %2012%20million%20people%2040,due%20to%20uncorrected%20refractive%20error
 
-[3]	B. Makav and V. Kılı̧c. 2019.  A new image captioning approach for visually 
-im-paired people. In 2019 11th International Conference on Electrical and Elec-tronics
-Engineering (ELECO), November 28-30, 2019, Bursa, Turkey. IEEE, Piscataway, NJ, 945–949.
+[3]	B. Makav and V. Kılı̧c. 2019.  A new image captioning approach for visually im-paired people. 
+In 2019 11th International Conference on Electrical and Elec-tronics Engineering (ELECO), 
+November 28-30, 2019, Bursa, Turkey. IEEE, Piscataway, NJ, 945–949. 
 https://doi.org/10.23919/ELECO47770.2019.8990630.
 
+[4]	Matterport. “Matterport/Mask_RCNN.” GitHub, https://github.com/matterport/Mask_RCNN
 
-## Dataset:
+[5]	Hsankesara. “Flickr Image Dataset.” Kaggle, 12 June 2018, 
+www.kaggle.com/hsankesara/flickr-image-dataset
 
-[Description]
