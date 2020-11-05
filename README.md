@@ -15,7 +15,7 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 1. We will build We will be using a version of the Fast-RCNN to create bounding boxes on our dataset as we believe it will provide us with more accurate captions later when we create our RNN model. 
 
-2. We chose Mask-RCNN both because of the speed and the accuracy of the model. Mask-RCNN is backed by a Resnet 101 architecture. Normally, when we train a very deep network, it tends to perform worse on the training set as the layers get deeper. The presence of skip connections in a ResNet with identity blocks, enables the activations of subsequent layers to equal prior layers without having the additional layers hurt the performance of the model. 
+2. We chose Mask-RCNN both because of the speed and the accuracy of the model. Mask-RCNN is backed by a Resnet 101 architecture. Normally, when we train a very deep network, it tends to perform worse on the training set as the layers get deeper. The presence of skip connections in a ResNet with identity blocks, enables the activations of subsequent layers to equal prior layers without having the additional layers hurt the performance of the model. Skip connections also help to tackle the problem of vanishing gradients in the model, feeding the output of one layer as the input to the next layers, instead of only the next one. 
 
 3. This turns out to improve the performance of the model as well at times as the presence of additional hidden units in a layer might improve feature selection. 
 
