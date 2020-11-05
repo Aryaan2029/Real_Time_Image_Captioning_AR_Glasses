@@ -25,7 +25,7 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
    and an excerpt from a plot of the generated graph of the network neural network architecture in Mask-RCNN, showing the skip connection from the "res4g_out" activation layer to the "add_147" Add layer, shown below: 
 
-![](Images/Screenshot 2020-11-06 at 1.42.50 AM.png) 
+![](Images/Screenshot%202020-11-06%20at%201.42.50%20AM.png) 
 
 
 5. Using the object classes and the position of their bounding boxes in each image, we will train a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
