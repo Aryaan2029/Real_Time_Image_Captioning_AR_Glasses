@@ -1,6 +1,6 @@
 # Automated Image Captioning 
 
-Our Team - Alison Ma, Aryan Pariani, Aryaan Mehra, Max Rivera, Jun Chen
+Our Team - Alison Ma, Aryan Pariani, Aryaan Mehra, Max Rivera
 
 ## Introduction/Background:
 
