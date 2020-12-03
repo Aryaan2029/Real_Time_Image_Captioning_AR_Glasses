@@ -49,18 +49,14 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 ![](Images/Screen%20Shot%202020-10-31%20at%206.58.07%20AM.png)
 
 6. This turned out to work well for us and we moved ahead with the process of applying Fast-RCNN on the dataset to generate bounding boxes for the images since our thesis is that the presence of bounding boxes will improve accuracy in the final product. 
-7. In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. 
-
-![](Images/Screen%20Shot%202020-10-31%20at%206.32.53%20AM.png)
+7. In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. ![](Images/Screen%20Shot%202020-10-31%20at%206.32.53%20AM.png)
 
 8. This seemed to work well and we had no issues generating bounding boxes, hence, we moved into applying Fast-RCNN. The above image shows the YOLO object detection capability.
 9. On researching Fast-RCNN, we realised that several versions of it have now been released including Fast-RCNN, Faster-RCNN and Mask-RCNN, the most recent and accurate version of the model. 
 10. We realised that making such a model from scratch would be extremely difficult and time consuming so we decided to use transfer learning. 
 11. We were able to find a model which had trained Mask-RCNN on the MS COCO dataset and download those pre-trained weights. 
 12. Next, we applied those weights to train all 31,873 images in the Flickr dataset to generate bounding boxes for all the objects in each image.
-13. The following are some examples:
-
-![](Images/Screen%20Shot%202020-10-31%20at%206.58.34%20AM.png)
+13. The following are some examples:![](Images/Screen%20Shot%202020-10-31%20at%206.58.34%20AM.png)
 
 14. This is a relatively high accuracy image where even items such as bags, handbags and traffic lights are being detected. 
 
@@ -68,9 +64,7 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 15. This image is a relatively low accuracy prediction with items like car and clock being recognized incorrectly. 
 
-16. After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.
-
-![](Images%20captions/word_frequency.png)
+16. After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.![](Images%20captions/word_frequency.png)
 
 17. Another important aspect that we explored in the 30K images were the frequency of the different words we were tokenizing. As you can see after cleaning the tokens for punctuation, white spaces, etc, certain words such as ‘a’, ‘in’ and ‘dog’ occur very frequently whereas more complicated words occur only once which makes it difficult for the model to learn those and map them to specific images. 
 
