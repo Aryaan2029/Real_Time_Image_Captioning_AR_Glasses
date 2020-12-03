@@ -44,7 +44,7 @@ and an excerpt from a plot of the generated graph of the network neural network 
 
 * After researching the various different datasets out there we decided to use the Flickr30k dataset from Kaggle which, apparently over time, has become the standard dataset to use for image captioning purposes.
 
-* It contains 31,873 images with 276,000 labels on these images and 27 overall classes. As shown below.
+* It contains 31,873 images with 276,000 labels on these images and Mask-RCNN with 81 overall classes. As shown below.
 
 ![](Images/Screen%20Shot%202020-10-31%20at%206.58.07%20AM.png)
 
