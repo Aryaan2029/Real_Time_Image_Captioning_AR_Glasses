@@ -13,60 +13,60 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 ## Methodology:
 
-1. We will build We will be using a version of the Fast-RCNN to create bounding boxes on our dataset as we believe it will provide us with more accurate captions later when we create our RNN model. 
+* We will build We will be using a version of the Fast-RCNN to create bounding boxes on our dataset as we believe it will provide us with more accurate captions later when we create our RNN model. 
 
-2. We chose Mask-RCNN both because of the speed and the accuracy of the model. Mask-RCNN is backed by a Resnet 101 architecture. Normally, when we train a very deep network, it tends to perform worse on the training set as the layers get deeper. The presence of skip connections in a ResNet with identity blocks, enables the activations of subsequent layers to equal prior layers without having the additional layers hurt the performance of the model. Skip connections also help to tackle the problem of vanishing gradients in the model, feeding the output of one layer as the input to the next layers, instead of only the next one. 
+* We chose Mask-RCNN both because of the speed and the accuracy of the model. Mask-RCNN is backed by a Resnet 101 architecture. Normally, when we train a very deep network, it tends to perform worse on the training set as the layers get deeper. The presence of skip connections in a ResNet with identity blocks, enables the activations of subsequent layers to equal prior layers without having the additional layers hurt the performance of the model. Skip connections also help to tackle the problem of vanishing gradients in the model, feeding the output of one layer as the input to the next layers, instead of only the next one. 
 
-3. This turns out to improve the performance of the model as well at times as the presence of additional hidden units in a layer might improve feature selection. 
+* This turns out to improve the performance of the model as well at times as the presence of additional hidden units in a layer might improve feature selection. 
 
-4. An example of the ResNet structure is the following:
+* An example of the ResNet structure is the following:
 
 ![](Images/Screen%20Shot%202020-10-31%20at%2010.51.32%20PM.png) 
 
-   and an excerpt from a plot of the generated graph of the network neural network architecture in Mask-RCNN, showing the skip connection from the "res4g_out" activation layer to the "add_147" Add layer, shown below: 
+and an excerpt from a plot of the generated graph of the network neural network architecture in Mask-RCNN, showing the skip connection from the "res4g_out" activation layer to the "add_147" Add layer, shown below: 
 
 ![](Images/Screenshot%202020-11-06%20at%201.42.50%20AM.png) 
 
 
-5. Using the object classes and the position of their bounding boxes in each image, we trained a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
+* Using the object classes and the position of their bounding boxes in each image, we trained a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
 
-6. The Flickr Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
+* The Flickr Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
 
-7. As we work on our project, we will also try to incorporate visualizations of convolutional filters and features being detected with extensive evaluation of our results. 
+* As we work on our project, we will also try to incorporate visualizations of convolutional filters and features being detected with extensive evaluation of our results. 
 
 ## Data Collection:
 
-1. We first tried to use the MSCOCO dataset which is a consolidated dataset containing 328,000 images with over 2.5 million labelled instances across 91 common object classes. 
+* We first tried to use the MSCOCO dataset which is a consolidated dataset containing 328,000 images with over 2.5 million labelled instances across 91 common object classes. 
 
-2. When trying to work with a dataset this massive, we ran into several issues with downloading, storing and applying a CNN to it. 
+* When trying to work with a dataset this massive, we ran into several issues with downloading, storing and applying a CNN to it. 
 
-3. As a result, we decided it would be best to use a smaller dataset which also had thousands of images and labelled instances but would be easier to work with. 
+* As a result, we decided it would be best to use a smaller dataset which also had thousands of images and labelled instances but would be easier to work with. 
 
-4. After researching the various different datasets out there we decided to use the Flickr30k dataset from Kaggle which, apparently over time, has become the standard dataset to use for image captioning purposes.
+* After researching the various different datasets out there we decided to use the Flickr30k dataset from Kaggle which, apparently over time, has become the standard dataset to use for image captioning purposes.
 
-5. It contains 31,873 images with 276,000 labels on these images and 27 overall classes. As shown below.
+* It contains 31,873 images with 276,000 labels on these images and 27 overall classes. As shown below.
 
 ![](Images/Screen%20Shot%202020-10-31%20at%206.58.07%20AM.png)
 
-6. This turned out to work well for us and we moved ahead with the process of applying Fast-RCNN on the dataset to generate bounding boxes for the images since our thesis is that the presence of bounding boxes will improve accuracy in the final product. 
-7. In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. ![](Images/Screen%20Shot%202020-10-31%20at%206.32.53%20AM.png)
+* This turned out to work well for us and we moved ahead with the process of applying Fast-RCNN on the dataset to generate bounding boxes for the images since our thesis is that the presence of bounding boxes will improve accuracy in the final product. 
+* In order to gauge the efficacy of the dataset we started by applying a simple pre-trained YOLO model on the dataset to see if it worked and to see the results. ![](Images/Screen%20Shot%202020-10-31%20at%206.32.53%20AM.png)
 
-8. This seemed to work well and we had no issues generating bounding boxes, hence, we moved into applying Fast-RCNN. The above image shows the YOLO object detection capability.
-9. On researching Fast-RCNN, we realised that several versions of it have now been released including Fast-RCNN, Faster-RCNN and Mask-RCNN, the most recent and accurate version of the model. 
-10. We realised that making such a model from scratch would be extremely difficult and time consuming so we decided to use transfer learning. 
-11. We were able to find a model which had trained Mask-RCNN on the MS COCO dataset and download those pre-trained weights. 
-12. Next, we applied those weights to train all 31,873 images in the Flickr dataset to generate bounding boxes for all the objects in each image.
-13. The following are some examples:![](Images/Screen%20Shot%202020-10-31%20at%206.58.34%20AM.png)
+* This seemed to work well and we had no issues generating bounding boxes, hence, we moved into applying Fast-RCNN. The above image shows the YOLO object detection capability.
+* On researching Fast-RCNN, we realised that several versions of it have now been released including Fast-RCNN, Faster-RCNN and Mask-RCNN, the most recent and accurate version of the model. 
+* We realised that making such a model from scratch would be extremely difficult and time consuming so we decided to use transfer learning. 
+* We were able to find a model which had trained Mask-RCNN on the MS COCO dataset and download those pre-trained weights. 
+* Next, we applied those weights to train all 31,873 images in the Flickr dataset to generate bounding boxes for all the objects in each image.
+* The following are some examples:![](Images/Screen%20Shot%202020-10-31%20at%206.58.34%20AM.png)
 
-14. This is a relatively high accuracy image where even items such as bags, handbags and traffic lights are being detected. 
+* This is a relatively high accuracy image where even items such as bags, handbags and traffic lights are being detected. 
 
 ![](Images/Screen%20Shot%202020-10-31%20at%206.58.49%20AM.png)
 
-15. This image is a relatively low accuracy prediction with items like car and clock being recognized incorrectly. 
+* This image is a relatively low accuracy prediction with items like car and clock being recognized incorrectly. 
 
-16. After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.![](Images%20captions/word_frequency.png)
+* After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.![](Images%20captions/word_frequency.png)
 
-17. Another important aspect that we explored in the 30K images were the frequency of the different words we were tokenizing. As you can see after cleaning the tokens for punctuation, white spaces, etc, certain words such as ‘a’, ‘in’ and ‘dog’ occur very frequently whereas more complicated words occur only once which makes it difficult for the model to learn those and map them to specific images. 
+* Another important aspect that we explored in the 30K images were the frequency of the different words we were tokenizing. As you can see after cleaning the tokens for punctuation, white spaces, etc, certain words such as ‘a’, ‘in’ and ‘dog’ occur very frequently whereas more complicated words occur only once which makes it difficult for the model to learn those and map them to specific images. 
 
 ## RNN Model Architecture:
 
