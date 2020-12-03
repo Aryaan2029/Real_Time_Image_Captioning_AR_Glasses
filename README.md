@@ -64,7 +64,7 @@ and an excerpt from a plot of the generated graph of the network neural network 
 
 * This image is a relatively low accuracy prediction with items like car and clock being recognized incorrectly. 
 
-* After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.![](Images%20captions/word_frequency.png)
+* After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.![](Screen%20Shot%202020-12-03%20at%2010.40.05%20PM.png)
 
 * Another important aspect that we explored in the 30K images were the frequency of the different words we were tokenizing. As you can see after cleaning the tokens for punctuation, white spaces, etc, certain words such as ‘a’, ‘in’ and ‘dog’ occur very frequently whereas more complicated words occur only once which makes it difficult for the model to learn those and map them to specific images. 
 
