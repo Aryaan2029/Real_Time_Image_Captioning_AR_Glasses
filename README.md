@@ -70,6 +70,28 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 16. After obtaining bounding box information on all 31,873 images, our data collection process ended. Next we will be focussing on our RNN model for captioning.
 
+![](Images%20captions/word_frequency.png)
+
+17. Another important aspect that we explored in the 30K images were the frequency of the different words we were tokenizing. As you can see after cleaning the tokens for punctuation, white spaces, etc, certain words such as ‘a’, ‘in’ and ‘dog’ occur very frequently whereas more complicated words occur only once which makes it difficult for the model to learn those and map them to specific images. 
+
+## RNN Model Architecture:
+
+We have demonstrated the use of object spatial relationship modeling for image captioning, specifically within the Transformer encoder-decoder architecture. This is achieved by incorporating the object relation module within the Transformer encoder.
+
+1. We introduce the Object Relation Transformer, an encoder-decoder architecture designed specifically for image captioning, that incorporates information about the spatial relationships between input detected objects through geometric attention. 
+2. We quantitatively demonstrate the usefulness of geometric attention through both baseline comparison and an ablation study on the Flickr dataset. 
+3. Lastly, we qualitatively show that geometric attention can result in improved captions that demonstrate enhanced spatial awareness.
+
+![](Images%20captions/model.png)
+
+Below, we’ve described our own model based on an Object Relation Transformer. We first utilize the Mask-RCNN image detector in order to generate the bounding boxes and encode object features for our images. We do this by using an Embedding Layer in our RNN. Next, we use an LSTM Layer in order to better convey spatial relationships between different objects. We then add our image features and caption features into a 1-D array in order to generate valid outputs to match images to captions. The use of a Dropout layer is to prevent overfitting.
+
+![](Images%20captions/Screen%20Shot%202020-11-26%20at%209.44.13%20PM.png)
+
+The recurrent neural network uses the long short-term memory blocks to take a particular word or phoneme, and evaluate it in the context of others in a string, where memory can be useful in sorting and categorizing these types of inputs. In general, LSTM is an accepted and common concept in pioneering recurrent neural networks.
+
+![](Images%20captions/LSTM.png)
+
 ## Results:
 
 1. By using the Mask-RCNN model described above, we were able to generate bounding box information for all 31,873 images in the Flickr dataset. 
@@ -86,6 +108,21 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 6. We can now move into making our RNN image captioning model to generate captions for our images.
 
+7. As it can be observed below, the Mask-RCNN object detection model generated bounding boxes with crucial spatial information about the position of a bride and the relative position of the umbrella over her head. This is one very good example we were able to spot where the spatial relationship information provided by bounding box coordinates and dimensions was able to help the attention-based Recurrent Neural Network Model generate precise captions that convey these spatial relationships, here the case being that the generated caption points out that the bride is being escorted “under an umbrella”. This is one aspect where we hoped our model would outperform image captioning models that are commonly implemented without using an external object detection model or bounding boxes to help captioning, in terms of spatial relationships between objects in images, that would help the visually challenged understand their environment much better and more precisely. 
+
+![](Images%20captions/Screenshot%202020-11-27%20at%2012.37.07%20AM.png)
+![](Images%20captions/Screenshot%202020-11-27%20at%2012.37.40%20AM.png)
+
+8. Some more examples from our test set of successful encoding of bounding box spatial information to precise captions that convey the same information, are shown below:
+
+![](Images%20captions/Screenshot%202020-11-27%20at%2012.24.36%20AM.png)
+![](Images%20captions/Screenshot%202020-11-27%20at%2012.23.36%20AM.png)
+![](Images%20captions/Screenshot%202020-11-27%20at%2012.20.58%20AM.png)
+![](Images%20captions/Screenshot%202020-11-27%20at%2012.17.15%20AM.png)
+
+9. As we can see below, after training our model for 200 epochs in total, the overall accuracy for our training set was 90.57% whereas our f1 metric was also 0.91. It is important to note though, that these results were on our training set but our test accuracy plateaued at ~30%. 
+
+![](Images%20captions/Screenshot%202020-11-30%20at%2010.16.34%20PM.png)
 
 ## Discussion:
 
@@ -93,11 +130,19 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 2. Similarly, there are several images which were relatively less accurate and described some classes correctly and others incorrectly in an image. This may cause our captioning system to have some images being highly accurate and some images being very inaccurate. It will be interesting to see the discrepancy between accurate and inaccurate images and understand the extent to which inaccuracy in the object detection system will play a role in providing inaccurate captions in the captioning system.
 
-3. We will use evaluation metrics to measure the performance of our models beyond just accuracy, such as F-1 Score, area under curve, specificity and sensitivity for both the training and test dataset. We shall discuss how to tackle model-related problems identified by evaluating these metrics, especially with respect to regularization, overfitting, the vanishing gradient problem, and suitable gradient descent optimizers, to name a few. 
+3. On looking at our images we can see that the bounding boxes have helped some images obtain very accurate results in their classification of spatial relationships. Although the total test accuracy did not exceed 30%, the few images that did have accurate bounding box representations, as shown above, had very accurate captions with spatial relationships.
 
-4. We will evaluate the performance of the model by analyzing generated visualizations, filters of feature maps, and convolutional filters to assess the performance of filters in our Convolutional Neural Network and the LSTM units in our Recurrent Neural Network to identify problems and discuss possible solutions in terms of tuning of hyperparameters. 
+4. Below we’ve also attached the BLEU score distributions of some of our best and worst image captions. The Bilingual Evaluation Understudy Score, or BLEU for short, is a metric for evaluating a generated sentence to a reference sentence. A perfect match results in a score of 1.0, whereas a perfect mismatch results in a score of 0.0.
 
-5. Potential quantitative evaluation of our approach include CIDEr and BLEU. From the MSCOCO dataset, there are reference captions which can be compared with our generated captions with CIDEr which measures cosine similarity or BLEU which measures sensitivity [3].
+# Worst Captions:
+![](Images%20captions/Screen%20Shot%202020-11-26%20at%209.44.50%20PM.png)
+
+# Best Captions:
+![](Images%20captions/Screen%20Shot%202020-11-26%20at%209.45.00%20PM.png)
+
+5. Another important observation is that even though the loss on the training set kept decreasing as the model trained all the existing images, it was unable to improve the testing accuracy beyond the 6th-7th epoch. This may be because the dataset was too small and we need more pictures to have accurate results. We tried to solve this overfitting problem by adding Dropout layers but it did not have a significant effect on reducing bias.
+
+![](Images%20captions/Screen%20Shot%202020-11-26%20at%209.44.31%20PM.png)
 
 
 ## References:
@@ -120,3 +165,4 @@ https://doi.org/10.23919/ELECO47770.2019.8990630.
 [5]	Hsankesara. “Flickr Image Dataset.” Kaggle, 12 June 2018, 
 www.kaggle.com/hsankesara/flickr-image-dataset
 
+[6]	Simao Herdade, Armin Kappeler, Kofi Boakye, Joao Soares. Image Captioning: Transforming Objects into Words. https://papers.nips.cc/paper/2019/file/680390c55bbd9ce416d1d69a9ab4760d-Paper.pdf
