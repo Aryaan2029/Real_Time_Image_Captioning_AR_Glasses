@@ -13,7 +13,7 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 
 ## Methodology:
 
-* We will build We will be using a version of the Fast-RCNN to create bounding boxes on our dataset as we believe it will provide us with more accurate captions later when we create our RNN model. 
+* We have used a version of the Fast-RCNN to create bounding boxes on our dataset as we believe it will provide us with more accurate captions later when we create our RNN model. 
 
 * We chose Mask-RCNN both because of the speed and the accuracy of the model. Mask-RCNN is backed by a Resnet 101 architecture. Normally, when we train a very deep network, it tends to perform worse on the training set as the layers get deeper. The presence of skip connections in a ResNet with identity blocks, enables the activations of subsequent layers to equal prior layers without having the additional layers hurt the performance of the model. Skip connections also help to tackle the problem of vanishing gradients in the model, feeding the output of one layer as the input to the next layers, instead of only the next one. 
 
@@ -72,9 +72,9 @@ and an excerpt from a plot of the generated graph of the network neural network 
 
 We have demonstrated the use of object spatial relationship modeling for image captioning, specifically within the Transformer encoder-decoder architecture. This is achieved by incorporating the object relation module within the Transformer encoder.
 
-1. We introduce the Object Relation Transformer, an encoder-decoder architecture designed specifically for image captioning, that incorporates information about the spatial relationships between input detected objects through geometric attention. 
-2. We quantitatively demonstrate the usefulness of geometric attention through both baseline comparison and an ablation study on the Flickr dataset. 
-3. Lastly, we qualitatively show that geometric attention can result in improved captions that demonstrate enhanced spatial awareness.
+* We introduce the Object Relation Transformer, an encoder-decoder architecture designed specifically for image captioning, that incorporates information about the spatial relationships between input detected objects through geometric attention. 
+* We quantitatively demonstrate the usefulness of geometric attention through both baseline comparison and an ablation study on the Flickr dataset. 
+* Lastly, we qualitatively show that geometric attention can result in improved captions that demonstrate enhanced spatial awareness.
 
 ![](Images%20captions/model.png)
 
@@ -88,45 +88,45 @@ The recurrent neural network uses the long short-term memory blocks to take a pa
 
 ## Results:
 
-1. By using the Mask-RCNN model described above, we were able to generate bounding box information for all 31,873 images in the Flickr dataset. 
+* By using the Mask-RCNN model described above, we were able to generate bounding box information for all 31,873 images in the Flickr dataset. 
 
-2. We were also able to store this information as a dictionary using json and store all the information inside text files. 
+* We were also able to store this information as a dictionary using json and store all the information inside text files. 
 
-3. Each image has the three keys in a dictionary; 
+* Each image has the three keys in a dictionary; 
 
-4. “Class ID’s” which signifies which class the object in the image belongs to, “ROI’s” specify the location in the image as a list as [center y coordinate, center x coordinate, height, width] - [y1,x1, y2, x2] and “Scores” which contains information about the accuracy of each class identified in a given image. 
+* “Class ID’s” which signifies which class the object in the image belongs to, “ROI’s” specify the location in the image as a list as [center y coordinate, center x coordinate, height, width] - [y1,x1, y2, x2] and “Scores” which contains information about the accuracy of each class identified in a given image. 
 
 ![](Images/Screen%20Shot%202020-10-31%20at%207.04.02%20AM.png)
 
-5. We were successful in the milestone which we had set for ourselves which was to finish all the data analysis and collection.
+* We were successful in the milestone which we had set for ourselves which was to finish all the data analysis and collection.
 
-6. We can now move into making our RNN image captioning model to generate captions for our images.
+* We can now move into making our RNN image captioning model to generate captions for our images.
 
-7. As it can be observed below, the Mask-RCNN object detection model generated bounding boxes with crucial spatial information about the position of a bride and the relative position of the umbrella over her head. This is one very good example we were able to spot where the spatial relationship information provided by bounding box coordinates and dimensions was able to help the attention-based Recurrent Neural Network Model generate precise captions that convey these spatial relationships, here the case being that the generated caption points out that the bride is being escorted “under an umbrella”. This is one aspect where we hoped our model would outperform image captioning models that are commonly implemented without using an external object detection model or bounding boxes to help captioning, in terms of spatial relationships between objects in images, that would help the visually challenged understand their environment much better and more precisely. 
+* As it can be observed below, the Mask-RCNN object detection model generated bounding boxes with crucial spatial information about the position of a bride and the relative position of the umbrella over her head. This is one very good example we were able to spot where the spatial relationship information provided by bounding box coordinates and dimensions was able to help the attention-based Recurrent Neural Network Model generate precise captions that convey these spatial relationships, here the case being that the generated caption points out that the bride is being escorted “under an umbrella”. This is one aspect where we hoped our model would outperform image captioning models that are commonly implemented without using an external object detection model or bounding boxes to help captioning, in terms of spatial relationships between objects in images, that would help the visually challenged understand their environment much better and more precisely. 
 
 ![](Images%20captions/Screenshot%202020-11-27%20at%2012.37.07%20AM.png)
 ![](Images%20captions/Screenshot%202020-11-27%20at%2012.37.40%20AM.png)
 
-8. Some more examples from our test set of successful encoding of bounding box spatial information to precise captions that convey the same information, are shown below:
+* Some more examples from our test set of successful encoding of bounding box spatial information to precise captions that convey the same information, are shown below:
 
 ![](Images%20captions/Screenshot%202020-11-27%20at%2012.24.36%20AM.png)
 ![](Images%20captions/Screenshot%202020-11-27%20at%2012.23.36%20AM.png)
 ![](Images%20captions/Screenshot%202020-11-27%20at%2012.20.58%20AM.png)
 ![](Images%20captions/Screenshot%202020-11-27%20at%2012.17.15%20AM.png)
 
-9. As we can see below, after training our model for 200 epochs in total, the overall accuracy for our training set was 90.57% whereas our f1 metric was also 0.91. It is important to note though, that these results were on our training set but our test accuracy plateaued at ~30%. 
+* As we can see below, after training our model for 200 epochs in total, the overall accuracy for our training set was 90.57% whereas our f1 metric was also 0.91. It is important to note though, that these results were on our training set but our test accuracy plateaued at ~30%. 
 
 ![](Images%20captions/Screenshot%202020-11-30%20at%2010.16.34%20PM.png)
 
 ## Discussion:
 
-1. From the results of the object detection performed by the Mask-RCNN model it is clear that many images have extremely accurate detection of objects. This will be extremely helpful when generating accurate captions for our dataset. 
+* From the results of the object detection performed by the Mask-RCNN model it is clear that many images have extremely accurate detection of objects. This will be extremely helpful when generating accurate captions for our dataset. 
 
-2. Similarly, there are several images which were relatively less accurate and described some classes correctly and others incorrectly in an image. This may cause our captioning system to have some images being highly accurate and some images being very inaccurate. It will be interesting to see the discrepancy between accurate and inaccurate images and understand the extent to which inaccuracy in the object detection system will play a role in providing inaccurate captions in the captioning system.
+* Similarly, there are several images which were relatively less accurate and described some classes correctly and others incorrectly in an image. This may cause our captioning system to have some images being highly accurate and some images being very inaccurate. It will be interesting to see the discrepancy between accurate and inaccurate images and understand the extent to which inaccuracy in the object detection system will play a role in providing inaccurate captions in the captioning system.
 
-3. On looking at our images we can see that the bounding boxes have helped some images obtain very accurate results in their classification of spatial relationships. Although the total test accuracy did not exceed 30%, the few images that did have accurate bounding box representations, as shown above, had very accurate captions with spatial relationships.
+* On looking at our images we can see that the bounding boxes have helped some images obtain very accurate results in their classification of spatial relationships. Although the total test accuracy did not exceed 30%, the few images that did have accurate bounding box representations, as shown above, had very accurate captions with spatial relationships.
 
-4. Below we’ve also attached the BLEU score distributions of some of our best and worst image captions. The Bilingual Evaluation Understudy Score, or BLEU for short, is a metric for evaluating a generated sentence to a reference sentence. A perfect match results in a score of 1.0, whereas a perfect mismatch results in a score of 0.0.
+* Below we’ve also attached the BLEU score distributions of some of our best and worst image captions. The Bilingual Evaluation Understudy Score, or BLEU for short, is a metric for evaluating a generated sentence to a reference sentence. A perfect match results in a score of 1.0, whereas a perfect mismatch results in a score of 0.0.
 
 # Worst Captions:
 ![](Images%20captions/Screen%20Shot%202020-11-26%20at%209.44.50%20PM.png)
@@ -134,17 +134,17 @@ The recurrent neural network uses the long short-term memory blocks to take a pa
 # Best Captions:
 ![](Images%20captions/Screen%20Shot%202020-11-26%20at%209.45.00%20PM.png)
 
-5. Another important observation is that even though the loss on the training set kept decreasing as the model trained all the existing images, it was unable to improve the testing accuracy beyond the 6th-7th epoch. This may be because the dataset was too small and we need more pictures to have accurate results. We tried to solve this overfitting problem by adding Dropout layers but it did not have a significant effect on reducing bias.
+* Another important observation is that even though the loss on the training set kept decreasing as the model trained all the existing images, it was unable to improve the testing accuracy beyond the 6th-7th epoch. This may be because the dataset was too small and we need more pictures to have accurate results. We tried to solve this overfitting problem by adding Dropout layers but it did not have a significant effect on reducing bias.
 
 ![](Images%20captions/Screen%20Shot%202020-11-26%20at%209.44.31%20PM.png)
 
 ## Conclusion: 
 
-1. We confidently believe that we have achieved our main objective - taking on the popular image captioning problem with a slightly more unique approach that involves feeding spatial information conveyed by bounding boxes generated by an object detection model, to the attention-based RNN for generating captions. But, there are some major improvements that we can make in the future.
+* We confidently believe that we have achieved our main objective - taking on the popular image captioning problem with a slightly more unique approach that involves feeding spatial information conveyed by bounding boxes generated by an object detection model, to the attention-based RNN for generating captions. But, there are some major improvements that we can make in the future.
 
-2. How can we improve upon tackling overfitting in the future? Although we made optimizations to improve our model’s generalization ability, like dropout layers, etc, we believe the main problem is not enough pictures in the dataset. Even with 30,000 images in our dataset, we need a much larger dataset, so that our image captioning model can generalize better for images of most common daily events in life. Clearly, to do well on a dataset of common daily events in life, we need a lot more images that contain frequently occurring objects in them, depicting millions of different events. We can also tackle overfitting by adding lasso (L1) and ridge (L2) regression parameters to the trainable layers in our attention-based Recurrent Neural Network model. 
+* How can we improve upon tackling overfitting in the future? Although we made optimizations to improve our model’s generalization ability, like dropout layers, etc, we believe the main problem is not enough pictures in the dataset. Even with 30,000 images in our dataset, we need a much larger dataset, so that our image captioning model can generalize better for images of most common daily events in life. Clearly, to do well on a dataset of common daily events in life, we need a lot more images that contain frequently occurring objects in them, depicting millions of different events. We can also tackle overfitting by adding lasso (L1) and ridge (L2) regression parameters to the trainable layers in our attention-based Recurrent Neural Network model. 
 
-3. How can we improve upon tackling the vanishing gradient problem for learning longer and more complex captions? We can try to add more LSTM units in our Recurrent Neural Network model that can help to diminish the vanishing gradient problem even more and help to learn more complex and longer sentences/captions. 
+* How can we improve upon tackling the vanishing gradient problem for learning longer and more complex captions? We can try to add more LSTM units in our Recurrent Neural Network model that can help to diminish the vanishing gradient problem even more and help to learn more complex and longer sentences/captions. 
 
 ## References:
 
