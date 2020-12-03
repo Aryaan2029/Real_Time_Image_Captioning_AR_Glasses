@@ -28,9 +28,9 @@ Given an image, our project aims to identify and categorize objects with a CNN m
 ![](Images/Screenshot%202020-11-06%20at%201.42.50%20AM.png) 
 
 
-5. Using the object classes and the position of their bounding boxes in each image, we will train a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
+5. Using the object classes and the position of their bounding boxes in each image, we trained a Recurrent Neural Network with an Attention Mechanism and LSTM units to generate sequences or sentences of captions for activities being performed or events and objects depicted in the images. 
 
-6. The MSCOCO Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
+6. The Flickr Dataset has a large amount of image data with bounding box position, height and width labels as well as relevant captions, and is therefore very commonly used for image caption generation purposes. We will also be making use of this extensive dataset for image caption generation.
 
 7. As we work on our project, we will also try to incorporate visualizations of convolutional filters and features being detected with extensive evaluation of our results. 
 
