@@ -1,6 +1,6 @@
-# Automated Image Captioning 
+# Real-Time Image Captioning for AR Glasses
 
-Our Team - Alison Ma, Aryan Pariani, Aryaan Mehra, Max Rivera
+- Aryan Pariani, Aryaan Mehra
 
 ## Introduction/Background:
 
